@@ -49,15 +49,6 @@ PD: Tener en cuenta que el hash de arriba siempre se actualiza por lo que es mej
 ### Asignación de los permisos de Laravel.
 Es necesario para la correcta visualización y funcionamiento del proyecto que se asignen los siguientes permisos en la carpeta raíz del proyecto (`mateAR/`):
 
-```
-  docker_phpnginx_1
-  docker_beanstalkd_1
-  docker_redis_1
-  docker_adminer_1
-  docker_mysql_1
-
-```
-
 ### Nombre de los contenedores.
 ```
     sudo chown -R 1000:33 storage/
@@ -104,8 +95,8 @@ DB_CONNECTION=mysql
 DB_HOST=mysql
 DB_PORT=3306
 DB_DATABASE=database
-DB_USERNAME=test
-DB_PASSWORD=test
+DB_USERNAME=root
+DB_PASSWORD=secret
 ```
 
 1. Entramos al `bash nginx` del Lord Commander ubicados en `lacade/docalacade` ejecutar: `./webapp`.
