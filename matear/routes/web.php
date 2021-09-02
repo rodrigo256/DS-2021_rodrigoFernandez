@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -33,6 +34,9 @@ Route::post('/add', [CartController::class, 'add'])->name('cart.store');
 Route::post('/update', [CartController::class, 'update'])->name('cart.update');
 Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
 Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
+
+Route::get('/profile', [UserController::class, 'index'])->name('user');
+Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('delete');
 
 Auth::routes();
 
