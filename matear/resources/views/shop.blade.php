@@ -2,17 +2,17 @@
 
 @section('content')
     <div class="container" style="margin-top: 80px">
-        <nav aria-label="breadcrumb">
+        {{-- <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Home</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Shop</li>
             </ol>
-        </nav>
+        </nav> --}}
         <div class="row justify-content-center">
             <div class="col-lg-12">
                 <div class="row">
                     <div class="col-lg-7">
-                        <h4>Products In Our Store</h4>
+                        <h4>Productos disponibles</h4>
                     </div>
                 </div>
                 <hr>
@@ -38,8 +38,8 @@
                                         <input type="hidden" value="1" id="quantity" name="quantity">
                                         <div class="card-footer" style="background-color: white;">
                                               <div class="row">
-                                                <button class="btn btn-secondary btn-sm" class="tooltip-test" title="add to cart">
-                                                    <i class="fa fa-shopping-cart"></i> add to cart
+                                                <button class="btn btn-secondary btn-sm" class="tooltip-test" title="Agregar al carrito">
+                                                    <i class="fa fa-shopping-cart"></i> Agregar al carrito
                                                 </button>
                                             </div>
                                         </div>

@@ -2,12 +2,12 @@
 
 @section('content')
     <div class="container" style="margin-top: 80px">
-        <nav aria-label="breadcrumb">
+       {{--  <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
                 <li class="breadcrumb-item"><a href="/">Shop</a></li>
                 <li class="breadcrumb-item active" aria-current="page">Cart</li>
             </ol>
-        </nav>
+        </nav> --}}
         @if(session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success_msg') }}
@@ -38,12 +38,12 @@
             <div class="col-lg-7">
                 <br>
                 @if(\Cart::getTotalQuantity()>0)
-                    <h4>{{ \Cart::getTotalQuantity()}} Product(s) In Your Cart</h4><br>
+                    <h4>{{ \Cart::getTotalQuantity()}} Productos en tu carrito</h4><br>
                 @else
-                    <h4>No Product(s) In Your Cart</h4><br>
-                    <a href="/" class="btn btn-dark">Continue Shopping</a>
+                    <h4>No hay productos en tu carrito</h4><br>
+                    <a href="/" class="btn btn-dark">Ver mas artículos</a>
                 @endif
-
+                @if(\Cart::getTotalQuantity()>0)
                 @foreach($cartCollection as $item)
                     <div class="row">
                         <div class="col-lg-3">
@@ -52,7 +52,7 @@
                         <div class="col-lg-5">
                             <p>
                                 <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b><br>
-                                <b>Price: </b>${{ $item->price }}<br>
+                                <b>Precio: </b>${{ $item->price }}<br>
                                 <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}<br>
                                 {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }}--}}
                             </p>
@@ -78,11 +78,13 @@
                     </div>
                     <hr>
                 @endforeach
+                
                 @if(count($cartCollection)>0)
                     <form action="{{ route('cart.clear') }}" method="POST">
                         {{ csrf_field() }}
-                        <button class="btn btn-secondary btn-md">Clear Cart</button>
+                        <button class="btn btn-secondary btn-md">Eliminar carrito</button>
                     </form>
+                @endif
                 @endif
             </div>
             @if(count($cartCollection)>0)
@@ -92,8 +94,9 @@
                             <li class="list-group-item"><b>Total: </b>${{ \Cart::getTotal() }}</li>
                         </ul>
                     </div>
-                    <br><a href="/" class="btn btn-dark">Continue Shopping</a>
-                    <a href="/checkout" class="btn btn-success">Proceed To Checkout</a>
+                    <br>
+                    <a href="/" class="btn btn-dark">Ver mas artículos</a>
+                    <a href="/checkout" class="btn btn-success">Continuar con la compra</a>
                 </div>
             @endif
         </div>
