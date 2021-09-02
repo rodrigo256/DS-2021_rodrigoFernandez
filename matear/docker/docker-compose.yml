@@ -11,8 +11,8 @@ services:
     environment:
       MYSQL_ROOT_PASSWORD: secret
       MYSQL_DATABASE: matear
-      MYSQL_USER: test
-      MYSQL_PASSWORD: test
+      MYSQL_USER: root
+      MYSQL_PASSWORD: secret
       USER: 1000
 
   beanstalkd:
