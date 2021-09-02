@@ -36,4 +36,4 @@ Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+/* Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home'); */
