@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CartController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,26 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/', function () {
+/* Route::get('/', function () {
     return view('welcome');
 });
+ */
+
+
+/* Route::get('/', 'CartController@shop')->name('shop');
+Route::get('/cart', 'CartController@cart')->name('cart.index');
+Route::post('/add', 'CartController@add')->name('cart.store');
+Route::post('/update', 'CartController@update')->name('cart.update');
+Route::post('/remove', 'CartController@remove')->name('cart.remove');
+Route::post('/clear', 'CartController@clear')->name('cart.clear'); */
+
+Route::get('/', [CartController::class, 'shop'])->name('shop');
+Route::get('/cart', [CartController::class, 'cart'])->name('cart.index');
+Route::post('/add', [CartController::class, 'add'])->name('cart.store');
+Route::post('/update', [CartController::class, 'update'])->name('cart.update');
+Route::post('/remove', [CartController::class, 'remove'])->name('cart.remove');
+Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
+
+Auth::routes();
+
+Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
