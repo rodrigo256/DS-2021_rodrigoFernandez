@@ -97,7 +97,7 @@
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right" style="display: flex; justify-content: space-between">
                           <!-- <button type="button" id="submit" name="submit" class="btn btn-secondary">Cancel</button> -->
-                           <a href="{{route('delete', auth()->user()->id)}}" type="button" class="btn btn-danger">Eliminar cuenta</a>
+                           <a href="{{route('delete', auth()->user()->id)}}" type="button" class="btn btn-danger" onclick="return ConfirmDelete()">Eliminar cuenta</a>
                            <a href="" type="button" class="btn btn-success">Actualizar datos</a>
 
                         </div>
