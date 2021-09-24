@@ -14,7 +14,7 @@ class UserController extends Controller
      */
     public function index()
     {
-        return view('users.date-user');
+        return view('users.index');
     }
 
     /**
@@ -55,9 +55,10 @@ class UserController extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function edit(user $user)
+    public function edit($id)
     {
-        //
+        $user = User::findOrFail($id);
+        return view('users.edit', compact('user'));
     }
 
     /**
@@ -80,13 +81,14 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-       /* dd($id); */
-       $user = User::find($id);
-     /*   dd($user); */
+        /* dd($id); */
+        /*  $user = User::find($id); */
+        /*   dd($user); */
 
-     $user->delete();
+        /*  $user->delete(); */
 
-     return redirect()->route('shop')->with('success_msg', 'Su cuenta ha sido eliminada!');
+        User::destroy($id);
 
+        return redirect()->route('shop')->with('success_msg', 'Su cuenta ha sido eliminada!');
     }
 }

@@ -37,6 +37,8 @@ Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
 Route::get('/profile', [UserController::class, 'index'])->name('user');
 Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('delete');
+Route::get('/user/{id}/edit', [UserController::class,'edit'])->name('edit');
+Route::resource('user', UserController::class);
 
 Auth::routes();
 
