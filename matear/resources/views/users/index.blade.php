@@ -1,7 +1,5 @@
 @extends('layouts.app')
 
-{{-- {{( auth()->user())}} --}}
-
 @section('content')
     <div class="container" style="margin-top: 80px">
         @if (session()->has('success_msg'))
