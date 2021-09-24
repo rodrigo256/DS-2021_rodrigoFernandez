@@ -10,10 +10,10 @@
         <div class="col-md-8">
             <div class="card">
                 <div class="card-header">{{ __('Editá tus datos') }}</div>
-
                 <div class="card-body">
-                    <form method="" action="" autocomplete="off">
+                    <form method="post" action="{{ url('/user/'.$user->id)}}" autocomplete="off">
                         @csrf
+                        {{method_field('PATCH')}}
                         @include('users.form', ['modo' => 'Editar datos'])
                     </form>
                 </div>

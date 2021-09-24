@@ -68,9 +68,12 @@ class UserController extends Controller
      * @param  \App\Models\cr  $cr
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, user $user)
+    public function update(Request $request, $id)
     {
-        //
+        $dateUser = request()->except(['_token','_method']);
+
+        User::where('id','=',$id)->update($dateUser);
+        return view('users.index');
     }
 
     /**

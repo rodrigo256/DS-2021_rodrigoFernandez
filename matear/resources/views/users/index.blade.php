@@ -36,13 +36,31 @@
                                     <h6 class="mb-2 text-primary">Datos de la cuenta</h6>
 
                                 </div>
-                                <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12  col-12">
+                                <div class="col-xl-9 col-lg-9 col-md-9 col-sm-9  col-12">
                                     <div class="form-group">
                                         <label for="fullName">Email</label>
                                         <input type="email" class="form-control" id="email"
                                             placeholder="{{ auth()->user()->email }}" disabled>
                                     </div>
                                 </div>
+                                <div class="col-xl-3 col-lg-3 col-md-3 col-sm-3 col-12">
+                                    <div class="form-group">
+                                        <label for="eMail">Contraseña</label>
+                                        <div class="input-group">
+                                          {{--   <input type="password" class="form-control" id="password" placeholder="" value="passwordExample"> --}}
+                                            <div class="input-group-prepend">
+                                                <div class="input-group-text" id="btnGroupAddon"> <a href="{{ route('password.request') }}">Cambiar contraseña</a></div>
+                                              </div>
+                                        </div>
+                                    </div>
+                                 {{--    <div class="input-group">
+                                        <div class="input-group-prepend">
+                                          <div class="input-group-text" id="btnGroupAddon"> <a href="">¿Olvidaste la contraseña?</a></div>
+                                        </div>
+                                        <input type="password" class="form-control" value="passwordExample" aria-label="Input group example" aria-describedby="btnGroupAddon">
+                                      </div> --}}
+                                </div>
+                                
 
                             </div>
                             <div class="row gutters">
@@ -89,15 +107,13 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right" style="display: flex; justify-content: space-between">
 
-                                        <a href="{{ route('edit', auth()->user()->id) }}" type="button"
+                                        <a href="{{ url('/user/'.auth()->user()->id.'/edit') }}" type="button"
                                             class="btn btn-success">Editar datos</a>
-                                        {{-- <a href="{{ route('delete', auth()->user()->id) }}" type="button"
-                                            class="btn btn-danger" onclick="return ConfirmDelete()">Eliminar cuenta</a> --}}
                                         <form action="{{ url('/user/' . auth()->user()->id) }}" method="post">
                                             @csrf
                                             {{method_field('DELETE')}}
                                             <input type="submit" class="btn btn-danger"
-                                                onclick="return confirm('¿Quieres borrar?')" value="Eliminar cuenta">
+                                                onclick="return confirm('¿Quieres borrar tu cuenta?')" value="Eliminar cuenta">
                                         </form>
                                     </div>
                                 </div>
