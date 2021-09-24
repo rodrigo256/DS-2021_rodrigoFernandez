@@ -10,7 +10,7 @@ class CartController extends Controller
     public function shop()
     {
         $products = Product::all();
-       /*  dd($products); */
+        /*  dd($products); */
         return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products]);
     }
 
@@ -20,37 +20,44 @@ class CartController extends Controller
         /* dd($cartCollection); */
         return view('cart')->withTitle('MATE-AR STORE | CART')->with(['cartCollection' => $cartCollection]);;
     }
-    public function add(Request$request) {
-        \Cart::add(array(
-            'id' => $request->id,
-            'name' => $request->name,
-            'price' => $request->price,
-            'quantity' => $request->quantity,
-            'attributes' => array(
-                'image' => $request->img,
-                'slug' => $request -> slug        
+    public function add(Request $request)
+    {
+        \Cart::add(
+            array(
+                'id' => $request->id,
+                'name' => $request->name,
+                'price' => $request->price,
+                'quantity' => $request->quantity,
+                'attributes' => array(
+                    'image' => $request->img,
+                    'slug' => $request->slug
+                )
             )
-        )
-            );
-    
-          return redirect()->route('cart.index')->with('success_msg','¡Articulo agregado!');
-        }
-    public function remove(Request $request){
+        );
+
+        return redirect()->route('cart.index')->with('success_msg', '¡Articulo agregado!');
+    }
+    public function remove(Request $request)
+    {
         \Cart::remove($request->id);
         return redirect()->route('cart.index')->with('success_msg', 'Articulo eliminado!');
     }
 
-    public function update(Request $request){
-        \Cart::update($request->id,
+    public function update(Request $request)
+    {
+        \Cart::update(
+            $request->id,
             array(
                 'quantity' => array(
                     'relative' => false,
                     'value' => $request->quantity
                 ),
-        ));
+            )
+        );
         return redirect()->route('cart.index')->with('success_msg', 'Carrito actualizado!');
     }
-    public function clear(){
+    public function clear()
+    {
         \Cart::clear();
         return redirect()->route('cart.index')->with('success_msg', 'Carrito eliminado!');
     }

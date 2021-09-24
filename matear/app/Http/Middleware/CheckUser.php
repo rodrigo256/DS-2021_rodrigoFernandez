@@ -17,8 +17,7 @@ class CheckUser
      */
     public function handle(Request $request, Closure $next)
     {
-        /* $dateUser = request()->except(['_token','_method']);
-        dd($dateUser); */
+
         if (auth()->check() && auth()->user())
             return $next($request);
 

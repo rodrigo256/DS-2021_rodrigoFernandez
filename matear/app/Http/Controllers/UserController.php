@@ -70,9 +70,9 @@ class UserController extends Controller
      */
     public function update(Request $request, $id)
     {
-        $dateUser = request()->except(['_token','_method']);
+        $dateUser = request()->except(['_token', '_method']);
 
-        User::where('id','=',$id)->update($dateUser);
+        User::where('id', '=', $id)->update($dateUser);
         return view('users.index');
     }
 

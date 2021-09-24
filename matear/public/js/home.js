@@ -1,10 +1,9 @@
-
-function ConfirmDelete(){
+function ConfirmDelete() {
     const respuesta = confirm("¿Estas seguro que desea eliminar la cuenta?");
 
-    if(respuesta === true){
+    if (respuesta === true) {
         return true;
-    }else{
+    } else {
         return false;
     }
 }

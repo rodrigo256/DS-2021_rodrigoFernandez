@@ -45,21 +45,15 @@
                                     <div class="form-group">
                                         <label for="eMail">Contraseña</label>
                                         <div class="input-group">
-                                          {{--   <input type="password" class="form-control" id="password" placeholder="" value="passwordExample"> --}}
+                        
                                             <div class="input-group-prepend">
-                                                <div class="input-group-text" id="btnGroupAddon"> <a href="{{ route('password.request') }}">Cambiar contraseña</a></div>
-                                              </div>
+                                                <div class="input-group-text" id="btnGroupAddon"> <a
+                                                        href="{{ route('password.request') }}">Cambiar contraseña</a>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
-                                 {{--    <div class="input-group">
-                                        <div class="input-group-prepend">
-                                          <div class="input-group-text" id="btnGroupAddon"> <a href="">¿Olvidaste la contraseña?</a></div>
-                                        </div>
-                                        <input type="password" class="form-control" value="passwordExample" aria-label="Input group example" aria-describedby="btnGroupAddon">
-                                      </div> --}}
                                 </div>
-                                
-
                             </div>
                             <div class="row gutters">
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
@@ -105,13 +99,14 @@
                                 <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                                     <div class="text-right" style="display: flex; justify-content: space-between">
 
-                                        <a href="{{ url('/user/'.auth()->user()->id.'/edit') }}" type="button"
+                                        <a href="{{ url('/user/' . auth()->user()->id . '/edit') }}" type="button"
                                             class="btn btn-success">Editar datos</a>
                                         <form action="{{ url('/user/' . auth()->user()->id) }}" method="post">
                                             @csrf
-                                            {{method_field('DELETE')}}
+                                            {{ method_field('DELETE') }}
                                             <input type="submit" class="btn btn-danger"
-                                                onclick="return confirm('¿Quieres borrar tu cuenta?')" value="Eliminar cuenta">
+                                                onclick="return confirm('¿Quieres borrar tu cuenta?')"
+                                                value="Eliminar cuenta">
                                         </form>
                                     </div>
                                 </div>
