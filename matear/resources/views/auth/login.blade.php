@@ -40,7 +40,7 @@
                                     @enderror
                                 </div>
                             </div>
-                            <div class="form-group">
+                            <div class="form-group ">
                                 <div class="col-md-12 ">
                                     <button type="submit" class="btn btn-primary" style="width: 100%">
                                         {{ __('Iniciar sesión') }}
