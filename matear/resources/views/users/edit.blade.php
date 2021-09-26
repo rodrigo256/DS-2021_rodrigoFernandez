@@ -10,7 +10,7 @@
                         <form method="post" action="{{ url('/user/' . $user->id) }}" autocomplete="off">
                             @csrf
                             {{ method_field('PATCH') }}
-                            @include('users.form', ['modo' => 'Editar datos'])
+                            @include('users.form', ['modo' => 'Guardar datos'])
                         </form>
                     </div>
                 </div>
