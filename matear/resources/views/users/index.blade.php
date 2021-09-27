@@ -152,6 +152,8 @@
                                                             class="form-control" id="name"
                                                             placeholder="{{ auth()->user()->name }}" disabled>
                                                     </div> --}}
+
+                                                   
                                             </div>
                                         </div>
                                     </div>
