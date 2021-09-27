@@ -12,9 +12,30 @@ class UserController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function index($id)
     {
-        return view('users.index');
+        $cards = User::find($id)->cards;
+       /*  dd($cards); */
+        if(!$cards->isEmpty()){
+            $cards;
+        }
+        else{
+            $cards =null;
+        }
+       /*  dd($cards); */
+      /*   dd(!empty($cards)); */
+       /*  if($cards){
+            
+            foreach($cards as $card){
+                $card;
+                $restCard = substr($card['card_number'], -4);
+                
+            }
+        }else{
+            $card = null;
+            $restCard = null;
+        } */
+        return view('users.index')->with('cards', $cards);
     }
 
     /**

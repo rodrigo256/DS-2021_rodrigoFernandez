@@ -27,7 +27,7 @@ Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
 
 Route::group(['middleware' => 'check'], function () {
-    Route::get('/profile', [UserController::class, 'index'])->name('user');
+    Route::get('/profile/{id}', [UserController::class, 'index'])->name('user');
     Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('delete');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit');
 });

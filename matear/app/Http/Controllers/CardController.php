@@ -9,8 +9,8 @@ class CardController extends Controller
 {
     public function index(){
 
-        $cards = Card::all();
+       /*  $cards = Card::all();
         dd($cards);
-        return view('users.index');
+        return view('users.index'); */
     }
 }
