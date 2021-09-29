@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Card;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
 
 class CardController extends Controller
 {
@@ -37,7 +38,11 @@ class CardController extends Controller
     public function store(Request $request)
     {
         $datosCard = request()->except('_token');
-
+        
+        $lastNumbers = substr($datosCard['card_number'], -4);
+        
+        $datosCard['card_number'] = Hash::make($datosCard['card_number']);
+        
         $userId = Auth()->user()->id;
 
         $data =[
@@ -46,6 +51,7 @@ class CardController extends Controller
             'card_number' => $datosCard['card_number'],
             'card_expiry' => $datosCard['card_expiry'],
             'card_cvc' => $datosCard['card_cvc'],
+            'last_number' => $lastNumbers,
         ];
         /* dd($data); */
         Card::insert($data);

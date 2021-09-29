@@ -188,7 +188,7 @@
                                                         <input
                                                             style=" border: 0; background-color: white; align-items: center"
                                                             type="text" class="form-control" id="surname"
-                                                            placeholder="Terminada en {{ substr($card['card_number'], -4) }}"
+                                                            placeholder="Terminada en {{ $card['last_number'] }}"
                                                             disabled>
                                                     </div>
                                                 </div>
