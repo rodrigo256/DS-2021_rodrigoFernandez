@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\CardController;
 use App\Http\Controllers\CartController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Auth;
@@ -27,13 +28,15 @@ Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
 
 
 Route::group(['middleware' => 'check'], function () {
-    Route::get('/profile/{id}', [UserController::class, 'index'])->name('user');
+    Route::get('/profile', [UserController::class, 'index'])->name('user');
     Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('delete');
     Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit');
+    Route::resource('card', CardController::class);
+    /* Route::get('/profile/add-card', [CardController::class, 'create'])->name('create'); */
 });
 
 
-Route::resource('user', UserController::class);
+/* Route::resource('user', UserController::class); */
 
 Auth::routes();
 
