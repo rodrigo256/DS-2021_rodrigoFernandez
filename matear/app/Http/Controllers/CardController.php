@@ -53,7 +53,6 @@ class CardController extends Controller
             'card_cvc' => $datosCard['card_cvc'],
             'last_number' => $lastNumbers,
         ];
-        /* dd($data); */
         Card::insert($data);
        
         return redirect('/profile');
@@ -101,6 +100,8 @@ class CardController extends Controller
      */
     public function destroy($id)
     {
-        //
+        Card::destroy($id);
+
+        return redirect('/profile');
     }
 }
