@@ -39,21 +39,13 @@ class CardController extends Controller
     {
         $datosCard = request()->except('_token');
         
-        $lastNumbers = substr($datosCard['card_number'], -4);
+        $datosCard['last_number'] = substr($datosCard['card_number'], -4);
         
         $datosCard['card_number'] = Hash::make($datosCard['card_number']);
         
-        $userId = Auth()->user()->id;
+        $datosCard['user_id']= Auth()->user()->id;
 
-        $data =[
-            'user_id' => $userId,
-            'card_name' => $datosCard['card_name'],
-            'card_number' => $datosCard['card_number'],
-            'card_expiry' => $datosCard['card_expiry'],
-            'card_cvc' => $datosCard['card_cvc'],
-            'last_number' => $lastNumbers,
-        ];
-        Card::insert($data);
+        Card::insert($datosCard);
        
         return redirect('/profile');
     }
