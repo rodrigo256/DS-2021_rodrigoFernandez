@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+
     <div class="container" style="margin-top: 80px">
         @if (session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -10,7 +11,6 @@
                 </button>
             </div>
         @endif
-        {{-- {{dd($cards)}} --}}
         <div class="container">
             <div class="row gutters" style="display: flex; justify-content: center;">
                 <div class="col-xl-3 col-lg-3 col-md-12 col-sm-12 col-12">
@@ -20,7 +20,7 @@
                             <div class="card"
                                 style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                                                                 border-radius: 15px; width: 100%; margin-bottom: 15px">
-                                <a href="{{ url('/profile/' . auth()->user()->id) }}" style="text-decoration:none">
+                                <a href="{{ url('/profile/' . $user['id']) }}" style="text-decoration:none">
                                     <div class="card-body title-card" style="padding:15px; text-align:center;">
                                         <h6 style="margin: 0; color:black;">Mis datos</h6>
                                     </div>
@@ -35,7 +35,7 @@
                                     </div>
                                 </a>
                             </div>
-                            <div class="card"
+                            {{-- <div class="card"
                                 style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                                                 border-radius: 15px; width: 100%; margin-bottom: 15px">
                                 <a href="" style="text-decoration:none">
@@ -43,7 +43,7 @@
                                         <h6 style="margin: 0; color:black;">Mis compras</h6>
                                     </div>
                                 </a>
-                            </div>
+                            </div> --}}
                         </div>
                     </div>
                 </div>
@@ -68,7 +68,7 @@
                                             <div class="col-sm-10">
                                                 <input type="email" class="form-control"
                                                     style="border: 0; background-color: white;" id="email"
-                                                    placeholder="{{ auth()->user()->email }}" disabled>
+                                                    placeholder="{{ $user['email'] }}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -90,7 +90,7 @@
                                             <div class="col-sm-10">
                                                 <input style="border: 0; background-color: white;" type="text"
                                                     class="form-control" id="name"
-                                                    placeholder="{{ auth()->user()->name }}" disabled>
+                                                    placeholder="{{ $user['name'] }}" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
@@ -98,31 +98,31 @@
                                             <div class="col-sm-10">
                                                 <input style="border: 0; background-color: white;" type="text"
                                                     class="form-control" id="surname"
-                                                    placeholder="{{ auth()->user()->surname }}" disabled>
+                                                    placeholder="{{ $user['surname'] }}" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label" for="website">Documento</label>
                                             <div class="col-sm-10">
                                                 <input style="border: 0; background-color: white;" type="text"
-                                                    class="form-control" id="surname"
-                                                    placeholder="DNI {{ auth()->user()->dni }}" disabled>
+                                                    class="form-control" id="dni"
+                                                    placeholder="DNI {{ $user['dni'] }}" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label" for="website">Teléfono</label>
                                             <div class="col-sm-10">
                                                 <input style=" border: 0; background-color: white;" type="text"
-                                                    class="form-control" id="surname"
-                                                    placeholder="{{ auth()->user()->phone }}" disabled>
+                                                    class="form-control" id="phone"
+                                                    placeholder="{{ $user['phone'] }}" disabled>
                                             </div>
                                         </div>
                                         <div class="form-group row">
                                             <label class="col-sm-2 col-form-label" for="website">Dirección</label>
                                             <div class="col-sm-10">
                                                 <input style=" border: 0; background-color: white;" type="text"
-                                                    class="form-control" id="surname"
-                                                    placeholder="{{ auth()->user()->address }}" disabled>
+                                                    class="form-control" id="address"
+                                                    placeholder="{{ $user['address'] }}" disabled>
                                             </div>
                                         </div>
                                     </div>
@@ -153,11 +153,10 @@
                             </div>
                             
                                 @include('cards.create')
-                            
                         </div>
                     </div>
-                   
                 </div>
+               
                 <div class="mb-2">
                     <div class=" row gutters">
                         <div class="col-md-12">
@@ -165,13 +164,10 @@
                                 <div class="card mb-2" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                 border-radius: 15px; width: 100%;">
                                     <div class="card-body">
-
                                         <div class=" row">
                                             <label class="col-sm-12 ">Usted no tiene ninguna tarjeta
                                                 agregada.</label>
-
                                         </div>
-
                                     </div>
                                 </div>
                             @else
@@ -180,10 +176,7 @@
                                         style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%); border-radius: 15px; width: 100%;">
                                         <div class="card-body">
                                             <div class="form-group">
-                                                
-                                                    <div class="
-                                                    form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="website">Icon</label>
+                                                    <div class="form-group row">
                                                     <div class="col-sm-10">
                                                         <input
                                                             style=" border: 0; background-color: white; align-items: center"
@@ -191,30 +184,12 @@
                                                             placeholder="Terminada en {{ $card['last_number'] }}"
                                                             disabled>
                                                     </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="website">Nombre</label>
-                                                    <div class="col-sm-10">
-                                                        <input style="border: 0; background-color: white;" type="text"
-                                                            class="form-control" id="surname"
-                                                            placeholder="{{ $card['card_name'] }}" disabled>
-                                                    </div>
-                                                </div>
-                                                <div class="form-group row">
-                                                    <label class="col-sm-2 col-form-label" for="website">Vencimiento</label>
-                                                    <div class="col-sm-10">
-                                                        <input style="border: 0; background-color: white;" type="text"
-                                                            class="form-control" id="surname"
-                                                            placeholder="{{ $card['card_expiry'] }}" disabled>
-                                                    </div>
-                                                </div>
-                                            <div  >
-                                                <div class="row">
-                                                    <div class="col" style="text-align: right">
+                                                    <div class="col-sm-2" style="text-align: right">
                                                      
-                                                      <a href="#" class="" data-toggle="modal" data-target="#smallModal">Eliminar</a>
-                                                    </div>
-                                                  </div>
+                                                        <a href="#" class="" data-toggle="modal" data-target="#smallModal">Eliminar</a>
+                                                      </div>
+                                                </div>
+                                            <div>
                                                 <div class="modal fade" style="" id="smallModal" tabindex="-1" role="dialog" aria-labelledby="basicModal" aria-hidden="true">
                                                     <div class="modal-dialog modal-sm" style="max-width: 50%">
                                                       <div class="modal-content" style="border-radius: 20px">
@@ -238,7 +213,6 @@
                                                                 <input type="submit" class="btn btn-primary" value="Aceptar">
                                                             </div>
                                                         </form>
-                                                        
                                                       </div>
                                                     </div>
                                                   </div>
@@ -255,10 +229,12 @@
                 <div class="row gutters" style="padding: 20px">
                     <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12">
                         <div class="text-right" style="display: flex; justify-content: space-between">
-                            <a href="{{ url('/user/' . auth()->user()->id . '/edit') }}" type="button"
+                            <a href="{{ url('/user/' . $user['id'] . '/edit') }}" type="button"
                                 class="btn btn-success" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                                                     border-radius: 15px;">Editar datos</a>
-                            <form action="{{ url('/user/' . auth()->user()->id) }}" method="post">
+                            <a href="{{ url('user/export-dates')}}" type="button" class="btn btn-primary" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
+                            border-radius: 15px;">Exportar datos</a>
+                            <form action="{{ url('/user/' . $user['id']) }}" method="post">
                                 @csrf
                                 {{ method_field('DELETE') }}
                                 <button type="button" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);

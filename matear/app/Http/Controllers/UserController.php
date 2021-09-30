@@ -16,29 +16,16 @@ class UserController extends Controller
     public function index()
     {
         $idUser = Auth()->user()->id;
-       
+        $user = User::findOrFail($idUser);
+
         $cards = User::find($idUser)->cards;
-       /*  dd($cards); */
-        if(!$cards->isEmpty()){
+
+        if (!$cards->isEmpty()) {
             $cards;
+        } else {
+            $cards = null;
         }
-        else{
-            $cards =null;
-        }
-       /*  dd($cards); */
-      /*   dd(!empty($cards)); */
-       /*  if($cards){
-            
-            foreach($cards as $card){
-                $card;
-                $restCard = substr($card['card_number'], -4);
-                
-            }
-        }else{
-            $card = null;
-            $restCard = null;
-        } */
-        return view('users.index')->with('cards', $cards);
+        return view('users.index')->with('cards', $cards)->with('user', $user);
     }
 
     /**
@@ -108,14 +95,32 @@ class UserController extends Controller
      */
     public function destroy($id)
     {
-        /* dd($id); */
-        /*  $user = User::find($id); */
-        /*   dd($user); */
-
-        /*  $user->delete(); */
-
         User::destroy($id);
 
         return redirect()->route('shop')->with('success_msg', 'Su cuenta ha sido eliminada!');
+    }
+
+    public function downloadJSON()
+    {
+        $idUser = Auth()->user()->id;
+        $card = User::find($idUser)->cards;
+       
+        $user = User::findOrFail($idUser);
+        /* dd($card[0]['card_name']); */
+        $dateUser = [
+            'name' => $user['name'],
+            'surname' => $user['surname'],
+            'dni' => $user['dni'],
+            'address' => $user['address'],
+            'email' => $user['email'],
+            /* 'cardname' => $card['card_name'],
+            'cardnumber' => $card['card_number'],
+            'cardexpiry' => $card['card_expiry'],
+            'cardcvc' => $card['card_cvc'], */
+            'card_user' => $card
+
+        ];
+        
+        return json_encode($dateUser);
     }
 }
