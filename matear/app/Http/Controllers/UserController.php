@@ -103,24 +103,45 @@ class UserController extends Controller
     public function downloadJSON()
     {
         $idUser = Auth()->user()->id;
-        $card = User::find($idUser)->cards;
-       
+
         $user = User::findOrFail($idUser);
-        /* dd($card[0]['card_name']); */
+
+        $cards =  $this->cardMap($idUser);
+
+        $dateUserJSON = $this->assembleAnJson($cards, $user);
+
+        return json_encode($dateUserJSON);
+    }
+
+    public function cardMap($idUser)
+    {
+        $cards = User::find($idUser)->cards;
+
+        $cards = $cards->map(function ($item) {
+            return collect([
+                'id' => $item->id,
+                'card_name' => $item->card_name,
+                'card_number' => $item->card_number,
+                'card_expiry' => $item->card_expiry,
+                'card_cvc' => $item->card_cvc,
+            ]);
+        });
+        
+        return $cards;
+    }
+
+    public function assembleAnJson($cards, $user)
+    {
         $dateUser = [
+            'id' => $user['id'],
             'name' => $user['name'],
             'surname' => $user['surname'],
             'dni' => $user['dni'],
             'address' => $user['address'],
             'email' => $user['email'],
-            /* 'cardname' => $card['card_name'],
-            'cardnumber' => $card['card_number'],
-            'cardexpiry' => $card['card_expiry'],
-            'cardcvc' => $card['card_cvc'], */
-            'card_user' => $card
-
+            'card_user' => $cards
         ];
-        
-        return json_encode($dateUser);
+
+        return $dateUser;
     }
 }
