@@ -6,6 +6,10 @@ use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
+use File;
+use Response;
+use View;
+
 class UserController extends Controller
 {
     /**
@@ -110,7 +114,24 @@ class UserController extends Controller
 
         $dateUserJSON = $this->assembleAnJson($cards, $user);
 
-        return json_encode($dateUserJSON);
+        $data = json_encode($dateUserJSON);
+
+        $jsongFile = time() . '_file.json';
+
+
+        /* dd(file(public_path('/upload/json'))); */
+
+        if(file_exists(public_path('/upload/json'))){
+            /* unlink(public_path('/upload/json')); */
+            /*  File::deleteDirectory(public_path('/upload/json')) ; */
+        
+        }else{
+
+        };
+
+        File::put(public_path('/upload/json/'.$jsongFile), $data);
+
+        return Response::download(public_path('/upload/json/'.$jsongFile));
     }
 
     public function cardMap($idUser)
