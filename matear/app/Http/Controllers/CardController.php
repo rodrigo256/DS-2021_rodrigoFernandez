@@ -47,7 +47,7 @@ class CardController extends Controller
 
         Card::insert($datosCard);
        
-        return redirect('/profile');
+        return redirect('/profile')->with('success_msg', 'Se ha agregado exitosamente una nueva tarjeta!');
     }
 
     /**
@@ -94,6 +94,6 @@ class CardController extends Controller
     {
         Card::destroy($id);
 
-        return redirect('/profile');
+        return redirect('/profile')->with('success_msg', 'Se ha eliminado una tarjeta!');
     }
 }

@@ -30,9 +30,10 @@ Route::post('/cart', [CartController::class, 'clear'])->name('cart.clear');
 Route::group(['middleware' => 'check'], function () {
     Route::get('/profile', [UserController::class, 'index'])->name('user');
     Route::get('/delete-user/{id}', [UserController::class, 'destroy'])->name('delete');
-    Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit');
+   // Route::get('/user/{id}/edit', [UserController::class, 'edit'])->name('edit');
     Route::get('/user/export-dates', [UserController::class, 'downloadJSON'])->name('download');
     Route::resource('card', CardController::class);
+    Route::resource('user', UserController::class);
     /* Route::get('/profile/add-card', [CardController::class, 'create'])->name('create'); */
 });
 

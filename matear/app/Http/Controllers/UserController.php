@@ -88,7 +88,8 @@ class UserController extends Controller
         $dateUser = request()->except(['_token', '_method']);
 
         User::where('id', '=', $id)->update($dateUser);
-        return view('users.index');
+        //return view('users.index');
+        return redirect()->route('user.index')->with('success_msg', 'Su datos han sido actualizado!');
     }
 
     /**
