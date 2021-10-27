@@ -37,7 +37,7 @@
         <a class="btn btn-dark btn-sm btn-block" href="{{ route('cart.index') }}">
             VER CARRITO <i class="fa fa-arrow-right"></i>
         </a>
-        <a class="btn btn-dark btn-sm btn-block" href="/checkout">
+        <a class="btn btn-dark btn-sm btn-block" href="{{ url('/shop/') }}">
             CONTINUAR CON LA COMPRA <i class="fa fa-arrow-right"></i>
         </a>
     </div>

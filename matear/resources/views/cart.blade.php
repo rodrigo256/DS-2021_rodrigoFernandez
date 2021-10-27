@@ -2,12 +2,6 @@
 
 @section('content')
     <div class="container" style="margin-top: 80px">
-       {{--  <nav aria-label="breadcrumb">
-            <ol class="breadcrumb">
-                <li class="breadcrumb-item"><a href="/">Shop</a></li>
-                <li class="breadcrumb-item active" aria-current="page">Cart</li>
-            </ol>
-        </nav> --}}
         @if(session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
                 {{ session()->get('success_msg') }}
@@ -54,7 +48,6 @@
                                 <b><a href="/shop/{{ $item->attributes->slug }}">{{ $item->name }}</a></b><br>
                                 <b>Precio: </b>${{ $item->price }}<br>
                                 <b>Sub Total: </b>${{ \Cart::get($item->id)->getPriceSum() }}<br>
-                                {{--                                <b>With Discount: </b>${{ \Cart::get($item->id)->getPriceSumWithConditions() }}--}}
                             </p>
                         </div>
                         <div class="col-lg-4">
@@ -96,7 +89,7 @@
                     </div>
                     <br>
                     <a href="/" class="btn btn-dark">Ver mas artículos</a>
-                    <a href="/checkout" class="btn btn-success">Continuar con la compra</a>
+                    <a href="{{ url('/shop/') }}" class="btn btn-success">Continuar con la compra</a>
                 </div>
             @endif
         </div>
