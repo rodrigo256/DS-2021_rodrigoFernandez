@@ -51,9 +51,7 @@
                                                             <i class="heart fa fa-heart-o"></i>
                                                         </div>
                                                     </div>
-                                               
                                             </div>
-
                                         </div>
                                     </form>
                                 </div>
