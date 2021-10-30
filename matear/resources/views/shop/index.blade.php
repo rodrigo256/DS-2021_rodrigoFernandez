@@ -13,7 +13,8 @@
                         <div class="mb-2">
                             <div class=" row gutters">
                                 <div class="col-md-12">
-                                    @if (isset($cartCollection))
+                                   {{--  {{dd(empty($cartCollection))}} --}}
+                                  {{--   @if (empty($cartCollection)) --}}
                                         <div class="card mb-2" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                     border-radius: 15px; width: 100%;">
                                             <div class="card-body">
@@ -22,8 +23,8 @@
                                                 </div>
                                             </div>
                                         </div>
-                                    @else
-                                        @foreach($cartCollection as $item)
+                                   {{--  @else --}}
+                                        @foreach($shopCollection as $item)
                                             <div class="card mb-2"
                                             style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%); border-radius: 15px; width: 100%;">
                                                 <div class="card-body">
@@ -41,7 +42,7 @@
                                                 </div>
                                             </div>
                                         @endforeach
-                                    @endif
+                                  {{--   @endif --}}
                                 </div>
                             </div>
                         </div>
