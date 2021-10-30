@@ -14,8 +14,9 @@ class ShopController extends Controller
      */
     public function index()
     {
-        //
-        return view('shop.index');
+        $cartCollection = \Cart::getContent();
+
+        return view('shop.index')->with(['cartCollection' => $cartCollection]);
     }
 
     /**
