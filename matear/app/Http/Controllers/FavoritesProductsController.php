@@ -2,11 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Shop;
-use App\Models\User;
+use App\Models\FavoritesProducts;
 use Illuminate\Http\Request;
 
-class ShopController extends Controller
+class FavoritesProductsController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -15,34 +14,7 @@ class ShopController extends Controller
      */
     public function index()
     {
-        $idUser = Auth()->user()->id;
-
-       /*  $user = User::findOrFail($idUser); */
-
-        $cartCollection = \Cart::getContent();
-
-        $shopData = [];
-
-
-        foreach($cartCollection as $product){
-
-            $productJson['product'] = json_encode($product);
-
-            $productJson['user_id'] = $idUser;
-        
-            array_push($shopData, $productJson);
-
-        };
-
-        Shop::insert($shopData);
-
-        \Cart::clear();
-
-        $shopDataFromDB =  User::find($idUser)->shops;
-
-        /* dd($hola); */
-
-        return view('shop.index')->with(['shopCollection' => $shopDataFromDB]);
+        //
     }
 
     /**
@@ -69,10 +41,10 @@ class ShopController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\FavoritesProducts  $favoritesProducts
      * @return \Illuminate\Http\Response
      */
-    public function show(Shop $shop)
+    public function show(FavoritesProducts $favoritesProducts)
     {
         //
     }
@@ -80,10 +52,10 @@ class ShopController extends Controller
     /**
      * Show the form for editing the specified resource.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\FavoritesProducts  $favoritesProducts
      * @return \Illuminate\Http\Response
      */
-    public function edit(Shop $shop)
+    public function edit(FavoritesProducts $favoritesProducts)
     {
         //
     }
@@ -92,10 +64,10 @@ class ShopController extends Controller
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\FavoritesProducts  $favoritesProducts
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Shop $shop)
+    public function update(Request $request, FavoritesProducts $favoritesProducts)
     {
         //
     }
@@ -103,10 +75,10 @@ class ShopController extends Controller
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Shop  $shop
+     * @param  \App\Models\FavoritesProducts  $favoritesProducts
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Shop $shop)
+    public function destroy(FavoritesProducts $favoritesProducts)
     {
         //
     }

@@ -48,7 +48,7 @@
                                                     </div>
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <i class="heart fa fa-heart-o"></i>
+                                                            <i onclick="prueba({{$pro->id}})" class="heart fa fa-heart-o"></i>
                                                         </div>
                                                     </div>
                                             </div>

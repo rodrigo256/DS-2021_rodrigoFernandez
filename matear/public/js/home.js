@@ -7,13 +7,27 @@ function ConfirmDelete() {
         return false;
     }
 }
-
+/* 
 $(".star.glyphicon").click(function() {
     $(this).toggleClass("glyphicon-star glyphicon-star-empty");
   });
   
   $(".heart.fa").click(function() {
     $(this).toggleClass("fa-heart fa-heart-o");
-  });
+  }); */
   
-  
+
+
+/*tener tabla favoritos intermedia columnas (user_id , product_id)
+
+modelo y controlador
+
+tener ruta, que si agregarlo o borrarlo ... 
+*/
+
+
+function prueba(valor){
+    //pegar api en js en laravel.... 
+
+    //
+}

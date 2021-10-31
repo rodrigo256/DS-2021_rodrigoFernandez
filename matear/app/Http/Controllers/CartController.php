@@ -20,6 +20,9 @@ class CartController extends Controller
         /* dd($cartCollection); */
         return view('cart')->withTitle('MATE-AR STORE | CART')->with(['cartCollection' => $cartCollection]);;
     }
+
+
+    
     public function add(Request $request)
     {
         \Cart::add(

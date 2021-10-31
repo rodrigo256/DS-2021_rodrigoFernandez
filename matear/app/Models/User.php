@@ -49,4 +49,8 @@ class User extends Authenticatable
     public function cards(){
         return $this->hasMany(Card::class, 'user_id');
     }
+
+    public function shops(){
+        return $this->hasMany(Shop::class, 'user_id');
+    }
 }
