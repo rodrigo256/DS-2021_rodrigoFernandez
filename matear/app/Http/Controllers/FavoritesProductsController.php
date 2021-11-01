@@ -15,6 +15,8 @@ class FavoritesProductsController extends Controller
     public function index()
     {
         //
+
+        return view('shop.favourite-products');
     }
 
     /**
@@ -35,7 +37,7 @@ class FavoritesProductsController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        dd($request);
     }
 
     /**
