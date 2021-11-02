@@ -3,6 +3,7 @@
 namespace Database\Seeders;
 
 use App\Models\Product;
+use Facade\FlareClient\Stacktrace\File;
 use Illuminate\Database\Seeder;
 
 class ProductsTableSeeder extends Seeder
@@ -12,12 +13,39 @@ class ProductsTableSeeder extends Seeder
      *
      * @return void
      */
+
+
+    public function readJsonImport(): array
+    {
+
+        $jsonData = file_get_contents("database/data/jsonProductosTeamCinco.json", true);
+
+        $data = json_decode($jsonData);
+        
+        return $data;
+    }
+
+
     public function run()
     {
+        $data = $this->readJsonImport();
+        $id_category  = 8;
+
+        foreach ($data as $da) {
+            Product::create([
+                'name' => $da->Nombre,
+                'slug' => $da->Slug,
+                'price' => $da->Precio,
+                'shipping_cost' => 29.99,
+                'description' => $da->Descripcion,
+                'category_id' => $id_category += 1,
+                'image_path' => $da->Imagen
+            ]);
+        }
+
         Product::create([
             'name' => 'Mate de Acero',
             'slug' => 'mate-acero',
-            'details' => 'Acero inoxidable, 8 cm de diametro.',
             'price' => 3499.99,
             'shipping_cost' => 29.99,
             'description' => 'mate-acero',
@@ -27,7 +55,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Bolso matero',
             'slug' => 'bolso-mate',
-            'details' => 'Bolso matero simil cuero',
             'price' => 5499.99,
             'shipping_cost' => 29.99,
             'description' => 'bolso-matero',
@@ -37,7 +64,7 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Matera gajos pelota negra',
             'slug' => 'bolso-mate-gajos',
-            'details' => 'Bolso matero simil cuero',
+
             'price' => 3599.00,
             'shipping_cost' => 29.99,
             'description' => 'Bolso matero simil cuero',
@@ -47,7 +74,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Imperial escudo nacional',
             'slug' => 'mate-imperial',
-            'details' => 'mate con cuerina',
             'price' => 9250.00,
             'shipping_cost' => 29.99,
             'description' => 'mate-imperial',
@@ -57,7 +83,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Imperial con apliques',
             'slug' => 'mate-con-apliques',
-            'details' => 'Bolso matero simil cuero',
             'price' => 15500.99,
             'shipping_cost' => 29.99,
             'description' => 'mate-matero',
@@ -67,7 +92,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Imperial crocco',
             'slug' => 'mate-crocco',
-            'details' => 'Imperial crocco',
             'price' => 8200.99,
             'shipping_cost' => 29.99,
             'description' => 'mate-crocco',
@@ -77,7 +101,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Yerba reiverde',
             'slug' => 'yerba',
-            'details' => 'Yerba Reiverde X 1KG',
             'price' => 950.99,
             'shipping_cost' => 29.99,
             'description' => 'yerba',
@@ -87,7 +110,6 @@ class ProductsTableSeeder extends Seeder
         Product::create([
             'name' => 'Imperial patitas tornasolado',
             'slug' => 'imperial-patitas',
-            'details' => 'Mate patitas',
             'price' => 12980.99,
             'shipping_cost' => 29.99,
             'description' => 'mate',

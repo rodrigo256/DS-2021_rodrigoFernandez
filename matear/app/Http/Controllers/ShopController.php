@@ -40,9 +40,21 @@ class ShopController extends Controller
 
         $shopDataFromDB =  User::find($idUser)->shops;
 
-        /* dd($hola); */
 
         return view('shop.index')->with(['shopCollection' => $shopDataFromDB]);
+
+       /* $jsonData = file_get_contents("jsonProductosTeamCinco.json", true);
+
+       $data = json_decode($jsonData);
+       
+        foreach($data as $da){
+            dd($da->Imagen);
+        }
+
+       dd($data);
+
+       return view('shop.index')->with(['shopCollection' => $data]); */
+
     }
 
     /**
