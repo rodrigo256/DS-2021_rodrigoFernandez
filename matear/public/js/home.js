@@ -26,40 +26,19 @@ tener ruta, que si agregarlo o borrarlo ...
 */
 
 
-async function prueba(valor) {
-    //pegar api en js en laravel.... 
+function prueba(valor) {
 
-    //
-    /* $(".star.glyphicon").click(function() {
-        $(this).toggleClass("glyphicon-star glyphicon-star-empty");
-      });
-      
-      $(".heart.fa").click(function() {
-        $(this).toggleClass("fa-heart fa-heart-o");
-      }); */
-
-    /* let icon = document.getElementById('icon-favorite')
-    icon.classList.remove('fa-heart-o');
-    icon.classList.add('fa-heart'); */
-    /* fetch('/favorite',{
-        method: 'post',
-        body: JSON.stringify(valor)
-    }).then(response => {
-        return response.text()
-    }).then(text => {
-        return console.log(text);
-    }) */
-
-    const res = await fetch('http://127.0.0.1:8080/favorite', {
-        method: 'POST',
-        mode: 'no-cors',
-        body: JSON.stringify(valor)
+    fetch("/favorite", {
+      /*   headers: {
+            'X-CSRF-TOKEN': window.CSRF_TOKEN// <--- aquí el token
+        }, */
+        method: "POST",
+        body: JSON.stringify({
+          id: valor
+        })
+    })
+    .then(r => r.json())
+    .then(respuesta => {
+      console.log(respuesta);
     });
-
-    const data = await res.json();
-
-    console.log(data)
-
-
-    console.log(valor)
 }

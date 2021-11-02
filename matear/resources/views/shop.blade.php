@@ -46,6 +46,7 @@
                                                             <i class="fa fa-shopping-cart"></i> Agregar al carrito
                                                         </button>
                                                     </div>
+                                                    
                                                     <div class="col-md-2">
                                                         <div>
                                                             <i onclick="prueba({{$pro->id}})" id="icon-favorite" class="heart fa fa-heart-o"></i>
