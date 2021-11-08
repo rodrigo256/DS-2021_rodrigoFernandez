@@ -2,6 +2,7 @@
 
 use App\Http\Controllers\CardController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\FavoritesProductsController;
 use App\Http\Controllers\ShopController;
 use App\Http\Controllers\UserController;
 use App\Models\FavoritesProducts;
@@ -37,7 +38,7 @@ Route::group(['middleware' => 'check'], function () {
     Route::resource('card', CardController::class);
     Route::resource('user', UserController::class);
     Route::resource('shop', ShopController::class);
-    Route::resource('favorite', FavoritesProducts::class);
+    Route::resource('favorite', FavoritesProductsController::class);
     /* Route::get('/profile/add-card', [CardController::class, 'create'])->name('create'); */
 });
 

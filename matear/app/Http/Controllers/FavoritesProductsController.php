@@ -15,7 +15,7 @@ class FavoritesProductsController extends Controller
     public function index()
     {
         //
-
+        /* dd('hola'); */
         return view('shop.favourite-products');
     }
 

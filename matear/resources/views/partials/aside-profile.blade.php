@@ -23,7 +23,7 @@
                 <div class="card"
                     style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
                                                                     border-radius: 15px; width: 100%; margin-bottom: 15px">
-                    <a href="" style="text-decoration:none">
+                    <a href="{{route('favorite.index')}}" style="text-decoration:none">
                         <div class="card-body title-card" style="padding:15px; text-align:center;">
                             <h6 style="margin: 0; color:black;">Productos favoritos</h6>
                         </div>

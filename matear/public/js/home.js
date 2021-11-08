@@ -27,18 +27,22 @@ tener ruta, que si agregarlo o borrarlo ...
 
 
 function prueba(valor) {
-
-    fetch("/favorite", {
-      /*   headers: {
-            'X-CSRF-TOKEN': window.CSRF_TOKEN// <--- aquí el token
-        }, */
-        method: "POST",
-        body: JSON.stringify({
-          id: valor
+    let token = document.querySelector('meta[name="csrf-token"]').content;
+    fetch("http://localhost/favorite", {
+            headers: {
+                'X-CSRF-TOKEN': token,
+                'Content-Type': 'application/json',
+                "Accept": "application/json"
+            },
+            method: "POST",
+            body: JSON.stringify({
+                id: valor
+            })
         })
-    })
-    .then(r => r.json())
-    .then(respuesta => {
-      console.log(respuesta);
-    });
+        .then(respuesta => {
+            /* debugger */
+            console.log(respuesta)
+        })
+        .then(data => console.log(data))
+
 }
