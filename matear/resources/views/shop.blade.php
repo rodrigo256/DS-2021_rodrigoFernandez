@@ -1,7 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
-{{dd($favorites)}}
+{{-- {{dd($favorites)}} --}}
     <div class="container" style="margin-top: 80px">
         @if (session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,7 +24,7 @@
                         <div class="col-lg-3">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
                                 <img src="/images/{{ $pro->image_path }}" class="card-img-top mx-auto"
-                                    style="height: 150px; width: 150px;display: block;" alt="{{ $pro->image_path }}">
+                                    style="height: 150px; width: 150px;display: block; margin: 2rem;" alt="{{ $pro->image_path }}">
                                 <div class="card-body">
                                     <a href="">
                                         <h6 class="card-title">{{ $pro->name }}</h6>
