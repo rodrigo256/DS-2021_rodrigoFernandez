@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\FavoritesProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
@@ -9,9 +10,13 @@ class CartController extends Controller
 {
     public function shop()
     {
+        $idUser = Auth()->user()->id;
         $products = Product::all();
+
+        $favorites = FavoritesProducts::where('user_id', $idUser)->get();
+
         /*  dd($products); */
-        return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products]);
+        return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products, 'favorites' => $favorites]);
     }
 
     public function cart()

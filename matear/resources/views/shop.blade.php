@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+{{dd($favorites)}}
     <div class="container" style="margin-top: 80px">
         @if (session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -49,8 +50,8 @@
                                                     
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <i onclick="prueba({{$pro->id}})" id="icon-favorite" class="heart fa fa-heart-o"></i>
-                                                        </div>
+                                                            <i onclick="prueba({{$pro->id}})" id="icon-favorite-{{$pro->id}}" class="heart fa fa-heart-o" ></i>
+                                                        </div> {{-- ver si pro-id exite en favorite-id --}}
                                                     </div>
                                             </div>
                                         </div>

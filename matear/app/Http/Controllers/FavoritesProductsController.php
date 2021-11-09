@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavoritesProducts;
+use Exception;
+use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
 
 class FavoritesProductsController extends Controller
@@ -37,51 +39,32 @@ class FavoritesProductsController extends Controller
      */
     public function store(Request $request)
     {
-        dd($request);
-    }
 
-    /**
-     * Display the specified resource.
-     *
-     * @param  \App\Models\FavoritesProducts  $favoritesProducts
-     * @return \Illuminate\Http\Response
-     */
-    public function show(FavoritesProducts $favoritesProducts)
-    {
-        //
-    }
+        try {
+            $idUser = Auth()->user()->id;
+            $idProduct = $request['id'];
 
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\FavoritesProducts  $favoritesProducts
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(FavoritesProducts $favoritesProducts)
-    {
-        //
-    }
+            $dataFavorite['user_id'] = $idUser;
+            $dataFavorite['product_id'] = $idProduct;
 
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\FavoritesProducts  $favoritesProducts
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, FavoritesProducts $favoritesProducts)
-    {
-        //
-    }
+            $favorite = FavoritesProducts::where('user_id', $idUser)
+                ->where('product_id', $idProduct)
+                ->first();
 
-    /**
-     * Remove the specified resource from storage.
-     *
-     * @param  \App\Models\FavoritesProducts  $favoritesProducts
-     * @return \Illuminate\Http\Response
-     */
-    public function destroy(FavoritesProducts $favoritesProducts)
-    {
-        //
+            $status = '';
+
+            if (is_null($favorite)) {
+                FavoritesProducts::insert($dataFavorite);
+                $status = 'created';
+            } else {
+                $favorite->delete();
+                $status = 'deleted';
+            }
+
+            return Response()->json(['status'=> $status]);
+        } catch (Exception $e) {
+
+            return Response()->json(false);
+        }
     }
 }

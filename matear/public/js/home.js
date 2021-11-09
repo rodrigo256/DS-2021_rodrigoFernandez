@@ -26,9 +26,9 @@ tener ruta, que si agregarlo o borrarlo ...
 */
 
 
-function prueba(valor) {
+function prueba(valor) { //agregar favorito
     let token = document.querySelector('meta[name="csrf-token"]').content;
-    fetch("http://localhost/favorite", {
+    fetch("/favorite", {
             headers: {
                 'X-CSRF-TOKEN': token,
                 'Content-Type': 'application/json',
@@ -40,9 +40,21 @@ function prueba(valor) {
             })
         })
         .then(respuesta => {
-            /* debugger */
-            console.log(respuesta)
+
+            return (respuesta.json())
         })
-        .then(data => console.log(data))
+        .then(data => {
+
+            const element = document.getElementById(`icon-favorite-${valor}`)
+
+            if(data.status === 'created'){
+                element.classList.remove('fa-heart-o')
+                element.classList.add('fa-heart')
+            }else{
+                element.classList.remove('fa-heart')
+                element.classList.add('fa-heart-o')
+            }
+        })
+
 
 }
