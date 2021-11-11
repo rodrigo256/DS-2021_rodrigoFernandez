@@ -5,7 +5,7 @@
         <div class="row justify-content-center">
             <div class="col-md-6" style="display: flex; justify-content: center;">
                 <div class="" style=" box-shadow: 0 10px 20px rgba(0,0,0,0.19), 0 6px 6px rgba(0,0,0,0.23);
-                    border-radius: 15px; width: 80%;">
+                        border-radius: 15px; width: 80%;">
 
                     <div style="padding: 20px 20px 0px; text-align:center;">
                         <h3>¡Bienvenido de nuevo!</h3>
@@ -52,6 +52,12 @@
                                             {{ __('¿Olvidaste tu contraseña?') }}
                                         </a>
                                     @endif
+                                </div>
+
+                                <div class="col-md-12" style="text-align: center;">
+                                    <a class="btn btn-link" href="{{ route('register') }}">
+                                        {{ __('Crear una nueva cuenta') }}
+                                    </a>
                                 </div>
                             </div>
                         </form>

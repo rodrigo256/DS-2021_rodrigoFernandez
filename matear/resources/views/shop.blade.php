@@ -1,7 +1,6 @@
 @extends('layouts.app')
 
 @section('content')
-{{-- {{dd($favorites)}} --}}
     <div class="container" style="margin-top: 80px">
         @if (session()->has('success_msg'))
             <div class="alert alert-success alert-dismissible fade show" role="alert">
@@ -24,7 +23,8 @@
                         <div class="col-lg-3">
                             <div class="card" style="margin-bottom: 20px; height: auto;">
                                 <img src="/images/{{ $pro->image_path }}" class="card-img-top mx-auto"
-                                    style="height: 150px; width: 150px;display: block; margin: 2rem;" alt="{{ $pro->image_path }}">
+                                    style="height: 150px; width: 150px;display: block; margin: 2rem;"
+                                    alt="{{ $pro->image_path }}">
                                 <div class="card-body">
                                     <a href="">
                                         <h6 class="card-title">{{ $pro->name }}</h6>
@@ -40,18 +40,28 @@
                                         <input type="hidden" value="1" id="quantity" name="quantity">
                                         <div class="card-footer" style="background-color: white;">
                                             <div class="row">
-                                               
-                                                    <div class="col-md-10 p-0">
-                                                        <button class="btn btn-secondary btn-sm" class="tooltip-test"
-                                                            title="Agregar al carrito">
-                                                            <i class="fa fa-shopping-cart"></i> Agregar al carrito
-                                                        </button>
-                                                    </div>
-                                                    <div class="col-md-2">
+
+                                                <div class="col-md-10 p-0">
+                                                    <button class="btn btn-secondary btn-sm" class="tooltip-test"
+                                                        title="Agregar al carrito">
+                                                        <i class="fa fa-shopping-cart"></i> Agregar al carrito
+                                                    </button>
+                                                </div>
+                                                <div class="col-md-2">
+                                                    @if (Auth::guest())
+                                                        <a href="{{ url('/shop/') }}">
+                                                            <i
+                                                                class="heart fa  {{ $pro->favorite ? 'fa-heart' : 'fa-heart-o' }}"></i>
+                                                        </a>
+                                                    @else
                                                         <div>
-                                                            <i onclick="prueba({{$pro->id}})" id="icon-favorite-{{$pro->id}}" class="heart fa  {{ $pro->favorite ? 'fa-heart' : 'fa-heart-o' }}" ></i>
+                                                            <i onclick="prueba({{ $pro->id }})"
+                                                                id="icon-favorite-{{ $pro->id }}"
+                                                                class="heart fa  {{ $pro->favorite ? 'fa-heart' : 'fa-heart-o' }}"></i>
                                                         </div>
-                                                    </div>
+                                                    @endif
+
+                                                </div>
                                             </div>
                                         </div>
                                     </form>

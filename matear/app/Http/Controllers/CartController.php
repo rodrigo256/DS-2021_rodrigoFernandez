@@ -5,19 +5,19 @@ namespace App\Http\Controllers;
 use App\Models\FavoritesProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 use function PHPSTORM_META\map;
 
 class CartController extends Controller
 {
     public function shop()
-    {
-
-        //agregar condicion si esta logueado llame favorito y mostrar / ver front / 
-
-        $idUser = Auth()->user()->id;
+    { 
 
         $products = Product::all();
+
+        if(!Auth::guest()){
+            $idUser = Auth()->user()->id;
 
         $favorites = FavoritesProducts::where('user_id', $idUser)->get();
 
@@ -37,15 +37,16 @@ class CartController extends Controller
 
             return $product;
         });
+        }
 
-        /*  dd($products); */
+      
         return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products]);
     }
 
     public function cart()
     {
         $cartCollection = \Cart::getContent();
-        /* dd($cartCollection); */
+      
         return view('cart')->withTitle('MATE-AR STORE | CART')->with(['cartCollection' => $cartCollection]);;
     }
 

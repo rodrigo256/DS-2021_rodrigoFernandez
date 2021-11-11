@@ -25,7 +25,7 @@
 
                                     @if (empty($products))
                                         <div class="card mb-2" style="box-shadow: 0 5px 20px rgb(0 0 0 / 0%), 0 5px 10px rgb(0 0 0 / 10%);
-                                                                    border-radius: 15px; width: 100%;">
+                                                                        border-radius: 15px; width: 100%;">
                                             <div class="card-body">
                                                 <div class=" row">
                                                     <label class="col-sm-12 ">Usted no ha realizado ninguna
@@ -46,12 +46,7 @@
                                                                     <img src="/images/{{ $item->image_path }}"
                                                                         style="height: 100px; width: 100px" alt="">
                                                                 </div>
-                                                                {{-- url('/favorite/' . $item->id) --}} {{-- <div class="col-md-9"
-                                                                    style="margin: auto">
-                                                                    <h4>{{ $item->name }}</h4>
-                                                                    <a href="{{ url('/favorite/' . $item->id) }}"
-                                                                        class="">Eliminar</a>
-                                                                </div> --}}
+
                                                                 <div class="col-md-9" style="margin: auto">
 
                                                                     <h4>{{ $item->name }}</h4>
@@ -74,7 +69,8 @@
                                                                                             id="exampleModalLabel">¿Estás
                                                                                             seguro
                                                                                             que
-                                                                                            desea eliminar este favorito?</h5>
+                                                                                            desea eliminar este favorito?
+                                                                                        </h5>
                                                                                         <button type="button"
                                                                                             class="close"
                                                                                             data-dismiss="modal"

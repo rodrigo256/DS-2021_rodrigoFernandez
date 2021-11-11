@@ -16,6 +16,11 @@
                             @csrf
                             @include('users.form', ['modo' => 'Crear'])
                         </form>
+                        <div class="col-md-12" style="text-align: center;">
+                            <a class="btn btn-link" href="{{ route('login') }}">
+                                {{ __('Ya tengo una cuenta') }}
+                            </a>
+                        </div>
                     </div>
                 </div>
             </div>
