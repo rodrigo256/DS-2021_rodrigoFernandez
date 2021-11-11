@@ -31,7 +31,7 @@
                                                     <div class="">
                                                         <div class="row">
                                                             <div class="col-md-3">
-                                                                <img src="/images/{{ json_decode($item['product'])->attributes->image }}" style="height: 150px; width: 150px" alt="">
+                                                                <img src="/images/{{ json_decode($item['product'])->attributes->image }}" style="height: 100px; width: 100px" alt="">
                                                             </div>
                                                             <div class="col-md-9" style="margin: auto">
                                                                 <h3>{{json_decode($item['product'])->name}}</h3>

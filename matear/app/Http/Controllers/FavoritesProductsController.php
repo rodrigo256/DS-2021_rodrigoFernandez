@@ -18,10 +18,33 @@ class FavoritesProductsController extends Controller
     public function index()
     {
 
-        dd($products = Product::all());
+        $idUser = Auth()->user()->id;
 
-        
-        return view('shop.favourite-products');
+        $products = Product::all();
+
+        $favorites = FavoritesProducts::where('user_id', $idUser)->get();
+      
+        $products->map(function ($product) use ($favorites, $idUser) {
+
+            $foundedFavorite = false;
+            $foundedFavoriteId = null;
+
+            foreach ($favorites as $favorite) {
+                if ($product['id'] === $favorite['product_id']) {
+                    if ($idUser === $favorite['user_id']) {
+                        $foundedFavorite = true;
+                        $foundedFavoriteId = $favorite['id'];
+                    }
+                }
+            };
+
+            $product['favorite'] = $foundedFavorite;
+            $product['favoriteId'] = $foundedFavoriteId;
+
+            return $product;
+        });
+
+        return view('shop.favourite-products')->with(['products' => $products]);
     }
 
     /**
@@ -32,6 +55,13 @@ class FavoritesProductsController extends Controller
     public function create()
     {
         //
+    }
+
+    public function destroy($id)
+    {
+        FavoritesProducts::destroy($id);
+
+        return redirect()->route('favorite.index')->with('success_msg', 'Listo, ha eliminado un producto favorito!');
     }
 
     /**
