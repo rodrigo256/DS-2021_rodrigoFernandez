@@ -6,17 +6,40 @@ use App\Models\FavoritesProducts;
 use App\Models\Product;
 use Illuminate\Http\Request;
 
+use function PHPSTORM_META\map;
+
 class CartController extends Controller
 {
     public function shop()
     {
+
+        //agregar condicion si esta logueado llame favorito y mostrar / ver front / 
+
         $idUser = Auth()->user()->id;
+
         $products = Product::all();
 
         $favorites = FavoritesProducts::where('user_id', $idUser)->get();
 
+        $products->map(function ($product) use ($favorites, $idUser) {
+
+            $foundedFavorite = false;
+
+            foreach ($favorites as $favorite) {
+                if ($product['id'] === $favorite['product_id']) {
+                    if ($idUser === $favorite['user_id']) {
+                        $foundedFavorite = true;
+                    }
+                }
+            };
+
+            $product['favorite'] = $foundedFavorite;
+
+            return $product;
+        });
+
         /*  dd($products); */
-        return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products, 'favorites' => $favorites]);
+        return view('shop')->withTitle('MATE-AR | SHOP')->with(['products' => $products]);
     }
 
     public function cart()
@@ -27,7 +50,7 @@ class CartController extends Controller
     }
 
 
-    
+
     public function add(Request $request)
     {
         \Cart::add(

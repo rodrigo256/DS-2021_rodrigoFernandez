@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\FavoritesProducts;
+use App\Models\Product;
 use Exception;
 use Facade\FlareClient\Http\Response;
 use Illuminate\Http\Request;
@@ -16,8 +17,10 @@ class FavoritesProductsController extends Controller
      */
     public function index()
     {
-        //
-        /* dd('hola'); */
+
+        dd($products = Product::all());
+
+        
         return view('shop.favourite-products');
     }
 
@@ -61,7 +64,7 @@ class FavoritesProductsController extends Controller
                 $status = 'deleted';
             }
 
-            return Response()->json(['status'=> $status]);
+            return Response()->json(['status' => $status]);
         } catch (Exception $e) {
 
             return Response()->json(false);

@@ -47,11 +47,10 @@
                                                             <i class="fa fa-shopping-cart"></i> Agregar al carrito
                                                         </button>
                                                     </div>
-                                                    
                                                     <div class="col-md-2">
                                                         <div>
-                                                            <i onclick="prueba({{$pro->id}})" id="icon-favorite-{{$pro->id}}" class="heart fa fa-heart-o" ></i>
-                                                        </div> {{-- ver si pro-id exite en favorite-id --}}
+                                                            <i onclick="prueba({{$pro->id}})" id="icon-favorite-{{$pro->id}}" class="heart fa  {{ $pro->favorite ? 'fa-heart' : 'fa-heart-o' }}" ></i>
+                                                        </div>
                                                     </div>
                                             </div>
                                         </div>
